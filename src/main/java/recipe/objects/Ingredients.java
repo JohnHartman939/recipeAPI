@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "ingredients")
-public class Ingredients {
+public class Ingredients implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="ingredientID")
@@ -50,5 +52,20 @@ public class Ingredients {
         this.ingredients = ingredients;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(ingredientID);
+    }
 
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Ingredients other = (Ingredients) obj;
+        return Objects.equals(ingredientID, other.getIngredientID());
+    }
 }

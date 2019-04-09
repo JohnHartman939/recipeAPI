@@ -6,13 +6,15 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name="recipe")
-public class Recipe {
+public class Recipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="recipeid")
@@ -24,10 +26,10 @@ public class Recipe {
     @Column(name = "dateAdded", columnDefinition = "TIMESTAMP")
     private LocalDateTime dateAdded;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe" ,fetch = FetchType.LAZY)
     private Set<IngredientsList> ingredients;
 
-    @OneToMany(mappedBy = "stepKey.recipeId")
+    @OneToMany(mappedBy = "stepKey.recipeId", fetch = FetchType.LAZY)
     private List<Steps> stepsList;
 
     public int getRecipeId() {
@@ -70,4 +72,20 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(recipeId);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Recipe other = (Recipe) obj;
+        return Objects.equals(recipeId, other.getRecipeId());
+    }
 }

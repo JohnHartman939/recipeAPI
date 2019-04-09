@@ -1,5 +1,7 @@
 package recipe.objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -8,23 +10,23 @@ import java.util.Objects;
 @Entity
 @Table(name = "recipe_ingredients_list")
 @IdClass(IngredientsListKey.class)
-public class IngredientsList {
+public class IngredientsList implements Serializable{
 
     @Id
-    @Column(name = "recipe_recipeid")
+    @Column(name = "recipe_recipeid", insertable=false, updatable=false)
     private int recipeId;
 
     @Id
-    @Column(name = "ingredient_ingredientid")
+    @Column(name = "ingredient_ingredientid", insertable=false, updatable=false)
     private int ingredientId;
 
 
     @ManyToOne
-    @JoinColumn(name = "recipeid")
+    @JoinColumn(name = "recipe_recipeid")
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name = "ingredientid")
+    @JoinColumn(name = "ingredient_ingredientid")
     private Ingredients ingredients;
 
     private float quantity;
@@ -68,5 +70,22 @@ public class IngredientsList {
 
     public void setIngredientId(int ingredientId) {
         this.ingredientId = ingredientId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(recipeId+ingredientId);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        IngredientsList other = (IngredientsList) obj;
+        return Objects.equals(recipeId, other.getRecipeId()) && Objects.equals(ingredientId,other.getIngredientId());
     }
 }

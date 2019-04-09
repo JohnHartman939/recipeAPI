@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Steps")
-public class Steps {
+public class Steps implements Serializable{
 
 
 
