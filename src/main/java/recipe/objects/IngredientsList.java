@@ -22,6 +22,7 @@ public class IngredientsList implements Serializable{
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "recipe_recipeid")
     private Recipe recipe;
 
@@ -70,22 +71,5 @@ public class IngredientsList implements Serializable{
 
     public void setIngredientId(int ingredientId) {
         this.ingredientId = ingredientId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(recipeId+ingredientId);
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        IngredientsList other = (IngredientsList) obj;
-        return Objects.equals(recipeId, other.getRecipeId()) && Objects.equals(ingredientId,other.getIngredientId());
     }
 }

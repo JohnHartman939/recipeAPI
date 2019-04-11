@@ -22,11 +22,10 @@ public class Ingredients implements Serializable {
     @Column(name="ingredientName")
     private String ingredientName;
 
-//    @OneToMany(mappedBy = "ingredient")
-//    private List<IngredientsList> ingredientsList;
-//
+
+    @JsonIgnore
     @OneToMany(mappedBy = "ingredients")
-    private Set<IngredientsList> ingredients;
+    private Set<IngredientsList> ingredientsList;
 
     public int getIngredientID() {
         return ingredientID;
@@ -45,11 +44,11 @@ public class Ingredients implements Serializable {
     }
 
     public Set<IngredientsList> getIngredientsList() {
-        return ingredients;
+        return ingredientsList;
     }
 
     public void setIngredientsList(Set<IngredientsList> ingredients) {
-        this.ingredients = ingredients;
+        this.ingredientsList = ingredients;
     }
 
     @Override
