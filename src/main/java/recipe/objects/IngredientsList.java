@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 @Table(name = "recipe_ingredients_list")
@@ -13,23 +14,24 @@ import java.util.Objects;
 public class IngredientsList implements Serializable{
 
     @Id
-    @Column(name = "recipe_recipeid", insertable=false, updatable=false)
+    @Column(name = "recipe_recipeid")
     private int recipeId;
 
     @Id
-    @Column(name = "ingredient_ingredientid", insertable=false, updatable=false)
+    @Column(name = "ingredient_ingredientid")
     private int ingredientId;
 
-
-    @ManyToOne
-    @JoinColumn(name = "recipe_recipeid")
-    private Recipe recipe;
-
-    @ManyToOne
-    @JoinColumn(name = "ingredient_ingredientid")
-    private Ingredients ingredients;
+    @Id
+    @Column(name = "unit_id")
+    private int unitId;
 
     private float quantity;
+
+    @Transient
+    private Ingredients ingredients;
+
+    @Transient
+    private Unit unit;
 
 
     public float getQuantity() {
@@ -38,22 +40,6 @@ public class IngredientsList implements Serializable{
 
     public void setQuantity(float quantity) {
         this.quantity = quantity;
-    }
-
-    public Ingredients getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Ingredients ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
     }
 
     public int getRecipeId() {
@@ -72,20 +58,27 @@ public class IngredientsList implements Serializable{
         this.ingredientId = ingredientId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(recipeId+ingredientId);
+    public Ingredients getIngredients() {
+        return ingredients;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        IngredientsList other = (IngredientsList) obj;
-        return Objects.equals(recipeId, other.getRecipeId()) && Objects.equals(ingredientId,other.getIngredientId());
+    public void setIngredients(Ingredients ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public int getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(int unitId) {
+        this.unitId = unitId;
     }
 }

@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -26,10 +27,10 @@ public class Recipe implements Serializable {
     @Column(name = "dateAdded", columnDefinition = "TIMESTAMP")
     private LocalDateTime dateAdded;
 
-    @OneToMany(mappedBy = "recipe" ,fetch = FetchType.LAZY)
-    private Set<IngredientsList> ingredients;
+    @Transient
+    private List<IngredientsList> ingredientsList;
 
-    @OneToMany(mappedBy = "stepKey.recipeId", fetch = FetchType.LAZY)
+    @Transient
     private List<Steps> stepsList;
 
     public int getRecipeId() {
@@ -56,6 +57,14 @@ public class Recipe implements Serializable {
         this.dateAdded = dateAdded;
     }
 
+    public List<IngredientsList> getIngredientsList() {
+        return ingredientsList;
+    }
+
+    public void setIngredientsList(List<IngredientsList> ingredients) {
+        this.ingredientsList = ingredients;
+    }
+
     public List<Steps> getStepsList() {
         return stepsList;
     }
@@ -64,28 +73,36 @@ public class Recipe implements Serializable {
         this.stepsList = stepsList;
     }
 
-    public Set<IngredientsList> getIngredients() {
-        return ingredients;
-    }
+//    public List<Steps> getStepsList() {
+//        return stepsList;
+//    }
+//
+//    public void setStepsList(List<Steps> stepsList) {
+//        this.stepsList = stepsList;
+//    }
+//
+//    public Set<IngredientsList> getIngredients() {
+//        return ingredients;
+//    }
+//
+//    public void setIngredientsList(Set<IngredientsList> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 
-    public void setIngredientsList(Set<IngredientsList> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(recipeId);
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Recipe other = (Recipe) obj;
-        return Objects.equals(recipeId, other.getRecipeId());
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hashCode(recipeId);
+//    }
+//
+//    @Override
+//    public boolean equals(final Object obj) {
+//        if (this == obj)
+//            return true;
+//        if (obj == null)
+//            return false;
+//        if (getClass() != obj.getClass())
+//            return false;
+//        Recipe other = (Recipe) obj;
+//        return Objects.equals(recipeId, other.getRecipeId());
+//    }
 }

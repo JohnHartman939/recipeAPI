@@ -17,23 +17,17 @@ public class Ingredients implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="ingredientID")
-    private int ingredientID;
+    private int ingredientId;
 
     @Column(name="ingredientName")
     private String ingredientName;
 
-//    @OneToMany(mappedBy = "ingredient")
-//    private List<IngredientsList> ingredientsList;
-//
-    @OneToMany(mappedBy = "ingredients")
-    private Set<IngredientsList> ingredients;
-
     public int getIngredientID() {
-        return ingredientID;
+        return ingredientId;
     }
 
     public void setIngredientID(int ingredientID) {
-        this.ingredientID = ingredientID;
+        this.ingredientId = ingredientID;
     }
 
     public String getIngredientName() {
@@ -44,28 +38,4 @@ public class Ingredients implements Serializable {
         this.ingredientName = ingredientName;
     }
 
-    public Set<IngredientsList> getIngredientsList() {
-        return ingredients;
-    }
-
-    public void setIngredientsList(Set<IngredientsList> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(ingredientID);
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Ingredients other = (Ingredients) obj;
-        return Objects.equals(ingredientID, other.getIngredientID());
-    }
 }
