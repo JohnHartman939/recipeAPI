@@ -5,23 +5,18 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Steps")
-public class Steps {
+@IdClass(StepKey.class)
+public class Steps implements Serializable{
+    @Id
+    @Column(name = "recipe_id")
+    private int recipeId;
 
-
-
-    @EmbeddedId
-    private StepKey stepKey;
+    @Id
+    @Column(name = "step_number")
+    private int stepNumber;
 
     @Column(name = "description")
     private String description;
-
-    public StepKey getStepKey() {
-        return stepKey;
-    }
-
-    public void setStepKey(StepKey stepKey) {
-        this.stepKey = stepKey;
-    }
 
     public String getDescription() {
         return description;
@@ -29,5 +24,21 @@ public class Steps {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
+    }
+
+    public int getStepNumber() {
+        return stepNumber;
+    }
+
+    public void setStepNumber(int stepNumber) {
+        this.stepNumber = stepNumber;
     }
 }

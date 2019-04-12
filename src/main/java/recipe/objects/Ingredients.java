@@ -6,32 +6,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "ingredients")
-public class Ingredients {
+public class Ingredients implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="ingredientID")
-    private int ingredientID;
+    @Column(name="ingredientid")
+    private int ingredientId;
 
     @Column(name="ingredientName")
     private String ingredientName;
 
-//    @OneToMany(mappedBy = "ingredient")
-//    private List<IngredientsList> ingredientsList;
-//
-    @OneToMany(mappedBy = "ingredients")
-    private Set<IngredientsList> ingredients;
 
-    public int getIngredientID() {
-        return ingredientID;
+    @JsonIgnore
+    @OneToMany(mappedBy = "ingredients")
+    private Set<IngredientsList> ingredientsList;
+
+    public int getIngredientId() {
+        return ingredientId;
     }
 
-    public void setIngredientID(int ingredientID) {
-        this.ingredientID = ingredientID;
+    public void setIngredientID(int ingredientId) {
+        this.ingredientId = ingredientId;
     }
 
     public String getIngredientName() {
@@ -43,12 +44,10 @@ public class Ingredients {
     }
 
     public Set<IngredientsList> getIngredientsList() {
-        return ingredients;
+        return ingredientsList;
     }
 
     public void setIngredientsList(Set<IngredientsList> ingredients) {
-        this.ingredients = ingredients;
+        this.ingredientsList = ingredients;
     }
-
-
 }

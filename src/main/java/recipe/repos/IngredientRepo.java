@@ -11,4 +11,5 @@ import java.util.List;
 
 @Repository
 public interface IngredientRepo extends JpaRepository<Ingredients,Integer> {
+    Ingredients findByIngredientId(int ingredientId);
 }

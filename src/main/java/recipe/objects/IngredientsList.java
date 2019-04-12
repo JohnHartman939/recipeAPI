@@ -1,34 +1,41 @@
 package recipe.objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "recipe_ingredients_list")
 @IdClass(IngredientsListKey.class)
-public class IngredientsList {
+public class IngredientsList implements Serializable{
 
     @Id
-    @Column(name = "recipe_recipeid")
+    @Column(name = "recipe_recipeid", insertable=false, updatable=false)
     private int recipeId;
 
     @Id
-    @Column(name = "ingredient_ingredientid")
+    @Column(name = "ingredient_ingredientid", insertable=false, updatable=false)
     private int ingredientId;
 
+    @Id
+    @Column(name = "unit_id", insertable=false, updatable=false)
+    private int unitId;
 
     @ManyToOne
-    @JoinColumn(name = "recipeid")
+    @JsonIgnore
+    @JoinColumn(name = "recipe_recipeid")
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name = "ingredientid")
+    @JoinColumn(name = "ingredient_ingredientid")
     private Ingredients ingredients;
 
     private float quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
 
     public float getQuantity() {
         return quantity;
@@ -68,5 +75,21 @@ public class IngredientsList {
 
     public void setIngredientId(int ingredientId) {
         this.ingredientId = ingredientId;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public int getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(int unitId) {
+        this.unitId = unitId;
     }
 }

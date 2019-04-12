@@ -2,6 +2,7 @@ package recipe.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import recipe.DTOs.RecipeDTO;
 import recipe.objects.Recipe;
 import recipe.services.RecipeService;
 
@@ -14,7 +15,7 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @GetMapping
-    public Recipe getLatestRecipe(){
+    public RecipeDTO getLatestRecipe(){
         return recipeService.getLatestRecipe();
     }
 

@@ -6,13 +6,16 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
 @Table(name="recipe")
-public class Recipe {
+public class Recipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="recipeid")
@@ -24,10 +27,10 @@ public class Recipe {
     @Column(name = "dateAdded", columnDefinition = "TIMESTAMP")
     private LocalDateTime dateAdded;
 
-    @OneToMany(mappedBy = "recipe")
-    private Set<IngredientsList> ingredients;
+    @OneToMany(mappedBy = "recipe" ,fetch = FetchType.LAZY)
+    private List<IngredientsList> ingredientsList;
 
-    @OneToMany(mappedBy = "stepKey.recipeId")
+    @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
     private List<Steps> stepsList;
 
     public int getRecipeId() {
@@ -54,6 +57,14 @@ public class Recipe {
         this.dateAdded = dateAdded;
     }
 
+    public List<IngredientsList> getIngredientsList() {
+        return ingredientsList;
+    }
+
+    public void setIngredientsList(List<IngredientsList> ingredients) {
+        this.ingredientsList = ingredients;
+    }
+
     public List<Steps> getStepsList() {
         return stepsList;
     }
@@ -61,13 +72,4 @@ public class Recipe {
     public void setStepsList(List<Steps> stepsList) {
         this.stepsList = stepsList;
     }
-
-    public Set<IngredientsList> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredientsList(Set<IngredientsList> ingredients) {
-        this.ingredients = ingredients;
-    }
-
 }
