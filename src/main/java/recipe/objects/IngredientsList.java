@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Entity
 @Table(name = "recipe_ingredients_list")
@@ -14,25 +11,31 @@ import java.util.Optional;
 public class IngredientsList implements Serializable{
 
     @Id
-    @Column(name = "recipe_recipeid")
+    @Column(name = "recipe_recipeid", insertable=false, updatable=false)
     private int recipeId;
 
     @Id
-    @Column(name = "ingredient_ingredientid")
+    @Column(name = "ingredient_ingredientid", insertable=false, updatable=false)
     private int ingredientId;
 
     @Id
-    @Column(name = "unit_id")
+    @Column(name = "unit_id", insertable=false, updatable=false)
     private int unitId;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "recipe_recipeid")
+    private Recipe recipe;
+
+    @ManyToOne
+    @JoinColumn(name = "ingredient_ingredientid")
+    private Ingredients ingredients;
 
     private float quantity;
 
-    @Transient
-    private Ingredients ingredients;
-
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "unit_id")
     private Unit unit;
-
 
     public float getQuantity() {
         return quantity;
@@ -40,6 +43,22 @@ public class IngredientsList implements Serializable{
 
     public void setQuantity(float quantity) {
         this.quantity = quantity;
+    }
+
+    public Ingredients getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Ingredients ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public int getRecipeId() {
@@ -56,14 +75,6 @@ public class IngredientsList implements Serializable{
 
     public void setIngredientId(int ingredientId) {
         this.ingredientId = ingredientId;
-    }
-
-    public Ingredients getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Ingredients ingredients) {
-        this.ingredients = ingredients;
     }
 
     public Unit getUnit() {

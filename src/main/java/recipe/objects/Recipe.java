@@ -27,10 +27,10 @@ public class Recipe implements Serializable {
     @Column(name = "dateAdded", columnDefinition = "TIMESTAMP")
     private LocalDateTime dateAdded;
 
-    @Transient
+    @OneToMany(mappedBy = "recipe" ,fetch = FetchType.LAZY)
     private List<IngredientsList> ingredientsList;
 
-    @Transient
+    @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
     private List<Steps> stepsList;
 
     public int getRecipeId() {
@@ -72,37 +72,4 @@ public class Recipe implements Serializable {
     public void setStepsList(List<Steps> stepsList) {
         this.stepsList = stepsList;
     }
-
-//    public List<Steps> getStepsList() {
-//        return stepsList;
-//    }
-//
-//    public void setStepsList(List<Steps> stepsList) {
-//        this.stepsList = stepsList;
-//    }
-//
-//    public Set<IngredientsList> getIngredients() {
-//        return ingredients;
-//    }
-//
-//    public void setIngredientsList(Set<IngredientsList> ingredients) {
-//        this.ingredients = ingredients;
-//    }
-
-//    @Override
-//    public int hashCode() {
-//        return Objects.hashCode(recipeId);
-//    }
-//
-//    @Override
-//    public boolean equals(final Object obj) {
-//        if (this == obj)
-//            return true;
-//        if (obj == null)
-//            return false;
-//        if (getClass() != obj.getClass())
-//            return false;
-//        Recipe other = (Recipe) obj;
-//        return Objects.equals(recipeId, other.getRecipeId());
-//    }
 }

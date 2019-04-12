@@ -16,6 +16,7 @@ public class RecipeDTO {
         this.setRecipeId(recipe.getRecipeId());
         this.setRecipeName(recipe.getRecipeName());
         this.setDateAdded(recipe.getDateAdded());
+        System.err.println(recipe.getIngredientsList().size());
         for(IngredientsList ingredient:recipe.getIngredientsList()){
             this.getIngredients().add(ingredientDTOFactory.makeIngredientDTO(ingredient));
         }

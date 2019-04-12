@@ -1,7 +1,5 @@
 package recipe.objects;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 public class IngredientsListKey implements Serializable {
@@ -37,20 +35,4 @@ public class IngredientsListKey implements Serializable {
         this.unitId = unitId;
     }
 
-//    @Override
-//    public int hashCode() {
-//        return 31;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) return true;
-//
-//        if (!(obj instanceof IngredientsListKey))
-//            return false;
-//
-//        IngredientsListKey other = (IngredientsListKey) obj;
-//
-//        return ingredientId==other.getIngredientId();
-//    }
 }

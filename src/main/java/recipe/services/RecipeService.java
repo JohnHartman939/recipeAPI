@@ -27,17 +27,8 @@ public class RecipeService {
     private UnitRepo unitRepo;
 
     public RecipeDTO getLatestRecipe() {
-        Recipe recipe = recipeRepo.findTopOneByOrderByDateAddedDesc();
-        recipe.setStepsList(stepRepo.findByRecipeId(recipe.getRecipeId()));
-        recipe.setIngredientsList(ingredientsListRepo.findByRecipeId(recipe.getRecipeId()));
-        for (IngredientsList ingredient: recipe.getIngredientsList()) {
-            ingredient.setIngredients(ingredientRepo.findByIngredientId(ingredient.getIngredientId()));
-            ingredient.setUnit(unitRepo.findByUnitId(ingredient.getUnitId()));
-        }
-        RecipeDTO recipeDTO = new RecipeDTO(recipe);
-        recipeDTO.halveRecipe();
+        RecipeDTO recipeDTO = new RecipeDTO(recipeRepo.findTopOneByOrderByDateAddedDesc());
         return recipeDTO;
-        //return recipeRepo.findAll();
     }
 
     public void addRecipe(Recipe recipe){

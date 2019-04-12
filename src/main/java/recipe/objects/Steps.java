@@ -7,12 +7,6 @@ import java.io.Serializable;
 @Table(name = "Steps")
 @IdClass(StepKey.class)
 public class Steps implements Serializable{
-
-
-
-//    @EmbeddedId
-//    private StepKey stepKey;
-
     @Id
     @Column(name = "recipe_id")
     private int recipeId;
@@ -23,14 +17,6 @@ public class Steps implements Serializable{
 
     @Column(name = "description")
     private String description;
-
-//    public StepKey getStepKey() {
-//        return stepKey;
-//    }
-//
-//    public void setStepKey(StepKey stepKey) {
-//        this.stepKey = stepKey;
-//    }
 
     public String getDescription() {
         return description;

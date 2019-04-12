@@ -16,18 +16,23 @@ import java.util.Set;
 public class Ingredients implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="ingredientID")
+    @Column(name="ingredientid")
     private int ingredientId;
 
     @Column(name="ingredientName")
     private String ingredientName;
 
-    public int getIngredientID() {
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "ingredients")
+    private Set<IngredientsList> ingredientsList;
+
+    public int getIngredientId() {
         return ingredientId;
     }
 
-    public void setIngredientID(int ingredientID) {
-        this.ingredientId = ingredientID;
+    public void setIngredientID(int ingredientId) {
+        this.ingredientId = ingredientId;
     }
 
     public String getIngredientName() {
@@ -38,4 +43,11 @@ public class Ingredients implements Serializable {
         this.ingredientName = ingredientName;
     }
 
+    public Set<IngredientsList> getIngredientsList() {
+        return ingredientsList;
+    }
+
+    public void setIngredientsList(Set<IngredientsList> ingredients) {
+        this.ingredientsList = ingredients;
+    }
 }

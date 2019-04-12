@@ -1,40 +1,43 @@
 package recipe.DTOs;
 
 import recipe.objects.IngredientsList;
+import recipe.objects.Unit;
+
+import java.util.List;
 
 public abstract class IngredientDTO {
     public IngredientDTO(IngredientsList ingredients){
-        this.setIngredientId(ingredients.getIngredientId());
-        this.setUnitId(ingredients.getUnitId());
+//        this.setIngredientId(ingredients.getIngredientId());
+//        this.setUnitId(ingredients.getUnitId());
         this.setQuantity(ingredients.getQuantity());
-        this.setUnit(ingredients.getUnit().getUnitName());
+        this.setUnit(ingredients.getUnit());
         this.setIngredientName(ingredients.getIngredients().getIngredientName());
     }
 
-    protected int ingredientId;
-    protected int unitId;
+//    protected int ingredientId;
+//    protected int unitId;
     protected float quantity;
-    protected String unit;
+    protected Unit unit;
     protected String ingredientName;
 
     public abstract void halveIngredient();
     public abstract void doubleIngredient();
 
-    public int getIngredientId() {
-        return ingredientId;
-    }
-
-    public void setIngredientId(int ingredientId) {
-        this.ingredientId = ingredientId;
-    }
-
-    public int getUnitId() {
-        return unitId;
-    }
-
-    public void setUnitId(int unitId) {
-        this.unitId = unitId;
-    }
+//    public int getIngredientId() {
+//        return ingredientId;
+//    }
+//
+//    public void setIngredientId(int ingredientId) {
+//        this.ingredientId = ingredientId;
+//    }
+//
+//    public int getUnitId() {
+//        return unitId;
+//    }
+//
+//    public void setUnitId(int unitId) {
+//        this.unitId = unitId;
+//    }
 
     public float getQuantity() {
         return quantity;
@@ -44,11 +47,11 @@ public abstract class IngredientDTO {
         this.quantity = quantity;
     }
 
-    public String getUnit() {
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 

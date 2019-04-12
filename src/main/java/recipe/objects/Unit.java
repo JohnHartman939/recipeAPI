@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Unit {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="unit_id")
+    @JoinColumn(name = "unit_id")
     private int unitId;
 
     @Column(name="unit_name")
