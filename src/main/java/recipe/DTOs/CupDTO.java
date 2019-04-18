@@ -2,17 +2,17 @@ package recipe.DTOs;
 
 import recipe.objects.IngredientsList;
 
-public class CupListDTO extends IngredientListDTO {
-    public CupListDTO(IngredientsList ingredients){
+public class CupDTO extends IngredientDTO {
+    public CupDTO(IngredientsList ingredients){
         super(ingredients);
     }
 
-    public IngredientListDTO halveIngredient() {
+    public IngredientDTO halveIngredient() {
         this.quantity=this.quantity/2;
         return this;
     }
 
-    public IngredientListDTO doubleIngredient() {
+    public IngredientDTO doubleIngredient() {
         this.quantity=this.quantity*2;
         return this;
     }

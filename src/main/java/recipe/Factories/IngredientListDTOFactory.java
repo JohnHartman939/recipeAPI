@@ -1,21 +1,21 @@
 package recipe.Factories;
 
-import recipe.DTOs.CupListDTO;
-import recipe.DTOs.IngredientListDTO;
-import recipe.DTOs.TablespoonListDTO;
+import recipe.DTOs.CupDTO;
+import recipe.DTOs.IngredientDTO;
+import recipe.DTOs.TablespoonDTO;
 import recipe.DTOs.TeaspoonDTO;
 import recipe.objects.IngredientsList;
 
 public class IngredientListDTOFactory {
 
-    public IngredientListDTO makeIngredientListDTO(IngredientsList ingredientsList){
+    public IngredientDTO makeIngredientListDTO(IngredientsList ingredientsList){
         if(ingredientsList.getUnit().getUnitName().equals("cup")){
-            return new CupListDTO(ingredientsList);
+            return new CupDTO(ingredientsList);
 
         }
 
         if(ingredientsList.getUnit().getUnitName().equals("Tbsp")){
-            return new TablespoonListDTO(ingredientsList);
+            return new TablespoonDTO(ingredientsList);
         }
 
         if(ingredientsList.getUnit().getUnitName().equals("tsp")){

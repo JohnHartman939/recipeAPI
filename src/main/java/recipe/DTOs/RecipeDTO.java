@@ -10,7 +10,7 @@ public class RecipeDTO implements RecipeDTOInterface {
     private int recipeId;
     private String recipeName;
     private LocalDateTime dateAdded;
-    private List<IngredientListDTO> ingredientList=new ArrayList<>();
+    private List<IngredientDTO> ingredientList=new ArrayList<>();
     private List<StepDTO> stepList= new ArrayList<>();
 
     public RecipeDTO(Recipe recipe){
@@ -34,7 +34,7 @@ public class RecipeDTO implements RecipeDTOInterface {
         this.dateAdded=dateAdded;
     }
 
-    public void setIngredientList(List<IngredientListDTO> ingredientList) {
+    public void setIngredientList(List<IngredientDTO> ingredientList) {
         this.ingredientList=ingredientList;
     }
 
@@ -54,7 +54,7 @@ public class RecipeDTO implements RecipeDTOInterface {
         return dateAdded;
     }
 
-    public List<IngredientListDTO> getIngredientList() {
+    public List<IngredientDTO> getIngredientList() {
         return ingredientList;
     }
 

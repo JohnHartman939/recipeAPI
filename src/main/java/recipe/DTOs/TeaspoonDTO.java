@@ -2,19 +2,19 @@ package recipe.DTOs;
 
 import recipe.objects.IngredientsList;
 
-public class TeaspoonDTO extends IngredientListDTO {
+public class TeaspoonDTO extends IngredientDTO {
 
     public TeaspoonDTO(IngredientsList ingredients){
         super(ingredients);
     }
 
 
-    public IngredientListDTO halveIngredient() {
+    public IngredientDTO halveIngredient() {
         return null;
     }
 
 
-    public IngredientListDTO doubleIngredient() {
+    public IngredientDTO doubleIngredient() {
         return null;
     }
 }

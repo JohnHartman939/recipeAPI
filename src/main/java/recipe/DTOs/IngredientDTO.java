@@ -1,12 +1,9 @@
 package recipe.DTOs;
 
 import recipe.objects.IngredientsList;
-import recipe.objects.Unit;
 
-import java.util.List;
-
-public abstract class IngredientListDTO {
-    public IngredientListDTO(IngredientsList ingredients){
+public abstract class IngredientDTO {
+    public IngredientDTO(IngredientsList ingredients){
         this.setQuantity(ingredients.getQuantity());
         this.setUnit(ingredients.getUnit().getUnitName());
         this.setIngredientName(ingredients.getIngredients().getIngredientName());
@@ -16,8 +13,8 @@ public abstract class IngredientListDTO {
     protected String unit;
     protected String ingredientName;
 
-    public abstract IngredientListDTO halveIngredient();
-    public abstract IngredientListDTO doubleIngredient();
+    public abstract IngredientDTO halveIngredient();
+    public abstract IngredientDTO doubleIngredient();
 
     public float getQuantity() {
         return quantity;

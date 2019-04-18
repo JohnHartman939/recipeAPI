@@ -7,6 +7,6 @@ public interface RecipeDTOInterface {
     void setRecipeId(int recipeId);
     void setRecipeName(String recipeName);
     void setDateAdded(LocalDateTime dateAdded);
-    void setIngredientList(List<IngredientListDTO> ingredientList);
+    void setIngredientList(List<IngredientDTO> ingredientList);
     void setStepList(List<StepDTO> steps);
 }

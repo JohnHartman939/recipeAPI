@@ -4,17 +4,17 @@ import recipe.objects.Ingredients;
 import recipe.objects.IngredientsList;
 import recipe.objects.Unit;
 
-public class TablespoonListDTO extends IngredientListDTO {
+public class TablespoonDTO extends IngredientDTO {
 
     private IngredientsList ingredientsList=new IngredientsList();
     private Unit unit= new Unit();
     private Ingredients ingredients= new Ingredients();
 
-    public TablespoonListDTO(IngredientsList ingredients){
+    public TablespoonDTO(IngredientsList ingredients){
         super(ingredients);
     }
 
-    public IngredientListDTO halveIngredient() {
+    public IngredientDTO halveIngredient() {
         if(super.quantity==1){
             ingredientsList.setQuantity((float)1.5);
             unit.setUnitName("tsp");
@@ -29,7 +29,7 @@ public class TablespoonListDTO extends IngredientListDTO {
         }
     }
 
-    public IngredientListDTO doubleIngredient() {
+    public IngredientDTO doubleIngredient() {
         this.quantity=this.quantity*2;
         return this;
     }
