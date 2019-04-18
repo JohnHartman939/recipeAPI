@@ -5,39 +5,19 @@ import recipe.objects.Unit;
 
 import java.util.List;
 
-public abstract class IngredientDTO {
-    public IngredientDTO(IngredientsList ingredients){
-//        this.setIngredientId(ingredients.getIngredientId());
-//        this.setUnitId(ingredients.getUnitId());
+public abstract class IngredientListDTO {
+    public IngredientListDTO(IngredientsList ingredients){
         this.setQuantity(ingredients.getQuantity());
-        this.setUnit(ingredients.getUnit());
+        this.setUnit(ingredients.getUnit().getUnitName());
         this.setIngredientName(ingredients.getIngredients().getIngredientName());
     }
 
-//    protected int ingredientId;
-//    protected int unitId;
     protected float quantity;
-    protected Unit unit;
+    protected String unit;
     protected String ingredientName;
 
     public abstract void halveIngredient();
     public abstract void doubleIngredient();
-
-//    public int getIngredientId() {
-//        return ingredientId;
-//    }
-//
-//    public void setIngredientId(int ingredientId) {
-//        this.ingredientId = ingredientId;
-//    }
-//
-//    public int getUnitId() {
-//        return unitId;
-//    }
-//
-//    public void setUnitId(int unitId) {
-//        this.unitId = unitId;
-//    }
 
     public float getQuantity() {
         return quantity;
@@ -47,11 +27,11 @@ public abstract class IngredientDTO {
         this.quantity = quantity;
     }
 
-    public Unit getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(Unit unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 

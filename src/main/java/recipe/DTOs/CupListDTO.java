@@ -2,9 +2,8 @@ package recipe.DTOs;
 
 import recipe.objects.IngredientsList;
 
-public class TablespoonDTO extends IngredientDTO {
-
-    public TablespoonDTO(IngredientsList ingredients){
+public class CupListDTO extends IngredientListDTO {
+    public CupListDTO(IngredientsList ingredients){
         super(ingredients);
     }
 
