@@ -3,7 +3,7 @@ package recipe.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import recipe.DTOs.RecipeDTO;
-import recipe.Factories.IngredientListDTOFactory;
+import recipe.Factories.IngredientDTOFactory;
 import recipe.Factories.RecipeDTOFactory;
 import recipe.Factories.StepDTOFactory;
 import recipe.objects.IngredientsList;
@@ -21,13 +21,13 @@ public class RecipeService {
     public RecipeDTO getLatestRecipe() {
         Recipe recipe= recipeRepo.findTopOneByOrderByDateAddedDesc();
         RecipeDTOFactory recipeDTOFactory = new RecipeDTOFactory();
-        IngredientListDTOFactory ingredientListDTOFactory =new IngredientListDTOFactory();
+        IngredientDTOFactory ingredientDTOFactory =new IngredientDTOFactory();
         StepDTOFactory stepDTOFactory=new StepDTOFactory();
         RecipeDTO recipeDTO=recipeDTOFactory.makeRecipeDTO(recipe);
 
         for(IngredientsList ingredientsList:recipe.getIngredientsList()){
 
-            recipeDTO.getIngredientList().add(ingredientListDTOFactory.makeIngredientListDTO(ingredientsList));
+            recipeDTO.getIngredientList().add(ingredientDTOFactory.makeIngredientListDTO(ingredientsList));
         }
 
         for(Steps step:recipe.getStepsList()){

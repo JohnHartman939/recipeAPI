@@ -6,7 +6,7 @@ import recipe.DTOs.TablespoonDTO;
 import recipe.DTOs.TeaspoonDTO;
 import recipe.objects.IngredientsList;
 
-public class IngredientListDTOFactory {
+public class IngredientDTOFactory {
 
     public IngredientDTO makeIngredientListDTO(IngredientsList ingredientsList){
         if(ingredientsList.getUnit().getUnitName().equals("cup")){
