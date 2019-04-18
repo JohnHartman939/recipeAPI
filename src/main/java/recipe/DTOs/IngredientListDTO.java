@@ -16,8 +16,8 @@ public abstract class IngredientListDTO {
     protected String unit;
     protected String ingredientName;
 
-    public abstract void halveIngredient();
-    public abstract void doubleIngredient();
+    public abstract IngredientListDTO halveIngredient();
+    public abstract IngredientListDTO doubleIngredient();
 
     public float getQuantity() {
         return quantity;

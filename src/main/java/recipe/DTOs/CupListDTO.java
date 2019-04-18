@@ -7,11 +7,13 @@ public class CupListDTO extends IngredientListDTO {
         super(ingredients);
     }
 
-    public void halveIngredient() {
+    public IngredientListDTO halveIngredient() {
         this.quantity=this.quantity/2;
+        return this;
     }
 
-    public void doubleIngredient() {
+    public IngredientListDTO doubleIngredient() {
         this.quantity=this.quantity*2;
+        return this;
     }
 }
