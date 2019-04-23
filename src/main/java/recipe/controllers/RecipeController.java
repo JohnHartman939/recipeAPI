@@ -17,17 +17,12 @@ public class RecipeController {
 
     @GetMapping
     public RecipeDTO getLatestRecipe(@RequestParam(name = "half", required = false)boolean half, @RequestParam(name = "double",required = false)boolean doubleRecipe){
-        ArrayList<IngredientDTO> toRemove= new ArrayList<>();
-        ArrayList<IngredientDTO> toAdd= new ArrayList<>();
         RecipeDTO recipeDTO=recipeService.getLatestRecipe();
         if(half!=doubleRecipe && half){
             for(IngredientDTO ingredientDTO :recipeDTO.getIngredientList()){
-                toRemove.add(ingredientDTO);
-                toAdd.add(ingredientDTO.halveIngredient());
+                ingredientDTO.halveIngredient();
             }
         }
-        recipeDTO.getIngredientList().removeAll(toRemove);
-        recipeDTO.getIngredientList().addAll(toAdd);
         if(half!=doubleRecipe && doubleRecipe){
             for(IngredientDTO ingredientDTO :recipeDTO.getIngredientList()){
                 ingredientDTO.doubleIngredient();

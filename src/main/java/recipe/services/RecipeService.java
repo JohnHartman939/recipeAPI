@@ -19,15 +19,15 @@ public class RecipeService {
     private RecipeRepo recipeRepo;
 
     public RecipeDTO getLatestRecipe() {
-        Recipe recipe= recipeRepo.findTopOneByOrderByDateAddedDesc();
+        Recipe recipe = recipeRepo.findTopOneByOrderByDateAddedDesc();
         RecipeDTOFactory recipeDTOFactory = new RecipeDTOFactory();
-        IngredientDTOFactory ingredientDTOFactory =new IngredientDTOFactory();
-        StepDTOFactory stepDTOFactory=new StepDTOFactory();
-        RecipeDTO recipeDTO=recipeDTOFactory.makeRecipeDTO(recipe);
+        IngredientDTOFactory ingredientDTOFactory = new IngredientDTOFactory();
+        StepDTOFactory stepDTOFactory = new StepDTOFactory();
+        RecipeDTO recipeDTO = recipeDTOFactory.makeRecipeDTO(recipe);
 
         for(IngredientsList ingredientsList:recipe.getIngredientsList()){
 
-            recipeDTO.getIngredientList().add(ingredientDTOFactory.makeIngredientListDTO(ingredientsList));
+            recipeDTO.getIngredientList().add(ingredientDTOFactory.makeIngredientDTO(ingredientsList));
         }
 
         for(Steps step:recipe.getStepsList()){

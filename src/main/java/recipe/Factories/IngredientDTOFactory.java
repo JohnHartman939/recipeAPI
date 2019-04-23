@@ -1,26 +1,25 @@
 package recipe.Factories;
 
-import recipe.DTOs.CupDTO;
 import recipe.DTOs.IngredientDTO;
-import recipe.DTOs.TablespoonDTO;
-import recipe.DTOs.TeaspoonDTO;
+import recipe.doublers.StandardDoubler;
+import recipe.doublers.TeaspoonDoubler;
+import recipe.halvers.StandardHalver;
+import recipe.halvers.TablespoonHalver;
 import recipe.objects.IngredientsList;
 
 public class IngredientDTOFactory {
 
-    public IngredientDTO makeIngredientListDTO(IngredientsList ingredientsList){
-        if(ingredientsList.getUnit().getUnitName().equals("cup")){
-            return new CupDTO(ingredientsList);
+    public IngredientDTO makeIngredientDTO(IngredientsList ingredientsList) {
 
-        }
+        IngredientDTO newIngredient = new IngredientDTO(ingredientsList);
+        if(newIngredient.getUnit().equals("Tbsp")){
+            newIngredient.setHalver(new TablespoonHalver());
+            System.err.println(newIngredient.getUnit());
+        }else newIngredient.setHalver(new StandardHalver());
 
-        if(ingredientsList.getUnit().getUnitName().equals("Tbsp")){
-            return new TablespoonDTO(ingredientsList);
-        }
-
-        if(ingredientsList.getUnit().getUnitName().equals("tsp")){
-            return new TeaspoonDTO(ingredientsList);
-        }
-        return null;
+        if(newIngredient.getUnit().equals("tsp")){
+            newIngredient.setDoubler(new TeaspoonDoubler());
+        }else newIngredient.setDoubler(new StandardDoubler());
+        return newIngredient;
     }
 }
