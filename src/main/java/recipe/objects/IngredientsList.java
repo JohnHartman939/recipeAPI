@@ -1,6 +1,7 @@
 package recipe.objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import recipe.DTOs.IngredientDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,6 +38,12 @@ public class IngredientsList implements Serializable{
     @JoinColumn(name = "unit_id")
     private Unit unit;
 
+    public IngredientsList(){}
+
+    public IngredientsList(IngredientDTO ingredientDTO){
+        quantity=ingredientDTO.getQuantity();
+    }
+
     public float getQuantity() {
         return quantity;
     }
@@ -52,6 +59,7 @@ public class IngredientsList implements Serializable{
     public void setIngredients(Ingredients ingredients) {
         this.ingredients = ingredients;
     }
+
 
     public Recipe getRecipe() {
         return recipe;

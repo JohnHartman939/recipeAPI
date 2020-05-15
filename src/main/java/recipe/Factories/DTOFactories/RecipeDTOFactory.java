@@ -1,4 +1,4 @@
-package recipe.Factories;
+package recipe.Factories.DTOFactories;
 
 import recipe.DTOs.RecipeDTO;
 import recipe.objects.Recipe;

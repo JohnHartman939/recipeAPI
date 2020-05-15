@@ -1,10 +1,10 @@
-package recipe.Factories;
+package recipe.Factories.DTOFactories;
 
 import recipe.DTOs.IngredientDTO;
-import recipe.doublers.StandardDoubler;
-import recipe.doublers.TeaspoonDoubler;
-import recipe.halvers.StandardHalver;
-import recipe.halvers.TablespoonHalver;
+import recipe.scaler.doublers.StandardDoubler;
+import recipe.scaler.doublers.TeaspoonDoubler;
+import recipe.scaler.halvers.StandardHalver;
+import recipe.scaler.halvers.TablespoonHalver;
 import recipe.objects.IngredientsList;
 
 public class IngredientDTOFactory {

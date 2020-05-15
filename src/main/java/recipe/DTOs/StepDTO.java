@@ -8,6 +8,8 @@ public class StepDTO {
         this.setDescription(step.getDescription());
     }
 
+    public StepDTO(){}
+
     private int stepNumber;
     private String description;
 

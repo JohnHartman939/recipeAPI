@@ -2,10 +2,7 @@ package recipe;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Test;
-import recipe.DTOs.IngredientDTO;
-import recipe.Factories.IngredientDTOFactory;
 import recipe.objects.Ingredients;
 import recipe.objects.IngredientsList;
 import recipe.objects.Unit;

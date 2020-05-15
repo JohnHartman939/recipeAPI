@@ -4,6 +4,7 @@ package recipe.objects;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import recipe.DTOs.IngredientDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Table(name = "ingredients")
 public class Ingredients implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ingredientid")
     private int ingredientId;
 
@@ -26,6 +27,12 @@ public class Ingredients implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "ingredients")
     private Set<IngredientsList> ingredientsList;
+
+    public Ingredients(){}
+
+    public Ingredients(IngredientDTO ingredientDTO){
+        ingredientName=ingredientDTO.getIngredientName();
+    }
 
     public int getIngredientId() {
         return ingredientId;

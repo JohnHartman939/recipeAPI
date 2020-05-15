@@ -1,5 +1,7 @@
 package recipe.objects;
 
+import recipe.DTOs.StepDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,6 +19,13 @@ public class Steps implements Serializable{
 
     @Column(name = "description")
     private String description;
+
+    public Steps(){}
+
+    public Steps(StepDTO stepDTO){
+        stepNumber=stepDTO.getStepNumber();
+        description=stepDTO.getDescription();
+    }
 
     public String getDescription() {
         return description;

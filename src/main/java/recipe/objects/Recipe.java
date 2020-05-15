@@ -4,20 +4,18 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import recipe.DTOs.RecipeDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="recipe")
 public class Recipe implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="recipeid")
     private int recipeId;
 
@@ -32,6 +30,15 @@ public class Recipe implements Serializable {
 
     @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
     private List<Steps> stepsList;
+
+    public Recipe(){}
+
+    public Recipe(RecipeDTO recipeDTO){
+        this.recipeName=recipeDTO.getRecipeName();
+        this.dateAdded=LocalDateTime.now();
+        this.ingredientsList=new ArrayList<>();
+        this.stepsList=new ArrayList<>();
+    }
 
     public int getRecipeId() {
         return recipeId;

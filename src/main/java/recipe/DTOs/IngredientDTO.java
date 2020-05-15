@@ -1,9 +1,10 @@
 package recipe.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import recipe.doublers.DoublerInterface;
-import recipe.halvers.HalverInterface;
+import recipe.scaler.doublers.DoublerInterface;
+import recipe.scaler.halvers.HalverInterface;
 import recipe.objects.IngredientsList;
+
 
 public class IngredientDTO {
 
@@ -17,6 +18,8 @@ public class IngredientDTO {
         this.setUnit(ingredients.getUnit().getUnitName());
         this.setIngredientName(ingredients.getIngredients().getIngredientName());
     }
+
+    public IngredientDTO(){}
 
     private float quantity;
     private String unit;

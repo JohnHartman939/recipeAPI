@@ -20,6 +20,8 @@ public class RecipeDTO implements RecipeDTOInterface {
 
     }
 
+    public RecipeDTO(){}
+
     public void setRecipeId(int recipeId) {
         this.recipeId=recipeId;
     }
